@@ -58,7 +58,11 @@ body{
 
 <body>
 
-<div id="game">
+<div id="game"><img id="musicBtn" src="IMG_0698.png">
+
+<audio id="music" loop>
+    <source src="Звук — Бурмалда Фон.mp3" type="audio/mpeg">
+</audio>
 
 <img id="background" src="IMG_0680.png">
 
@@ -84,6 +88,19 @@ setInterval(() => {
 
     localStorage.setItem("minutes", minutes);
 }, 60000);
-</script>
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+music.volume = 0.5;
+
+musicBtn.onclick = () => {
+    if (music.paused) {
+        music.play();
+        musicBtn.src = "IMG_0696.png";
+    } else {
+        music.pause();
+        musicBtn.src = "IMG_0698.png";
+    }
+};</script>
 
 </html>
