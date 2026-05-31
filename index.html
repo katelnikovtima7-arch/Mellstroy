@@ -36,10 +36,10 @@ body{
     position:absolute;
     top:20px;
     left:20px;
-    color:white;
+    ccolor:#111;
     font-size:24px;
     font-weight:bold;
-    text-shadow:2px 2px 4px black;
+    text-shadow:1px 1px 2px rgba(255,255,255,0.7);
     z-index:10;
     line-height:1.8;
 }</style>
@@ -54,10 +54,18 @@ body{
 <img id="hero" src="IMG_0686.png"><div id="stats">
     <div>🍽️ Съедено: 0</div>
     <div>💰 Потрачено: 0 ₽</div>
-    <div>⏱️ В игре: 0 мин</div>
+    <div id="timeCounter">⏱️ В игре: 0 мин</div>
 </div>
 
 </div>
 
-</body>
+<script>
+let minutes = 0;
+
+setInterval(() => {
+    minutes++;
+    document.getElementById("timeCounter").innerText =
+        "⏱️ В игре: " + minutes + " мин";
+}, 60000);
+</script>
 </html>
