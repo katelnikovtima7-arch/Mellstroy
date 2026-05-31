@@ -64,12 +64,19 @@ body{
 </div>
 
 <script>
-let minutes = 0;
+let minutes = localStorage.getItem("minutes") || 0;
+
+document.getElementById("timeCounter").innerText =
+"⏱️ В игре: " + minutes + " мин";
 
 setInterval(() => {
     minutes++;
+
     document.getElementById("timeCounter").innerText =
-        "⏱️ В игре: " + minutes + " мин";
+    "⏱️ В игре: " + minutes + " мин";
+
+    localStorage.setItem("minutes", minutes);
 }, 60000);
 </script>
+
 </html>
