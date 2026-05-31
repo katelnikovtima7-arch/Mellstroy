@@ -32,6 +32,7 @@ body{
     width:35%;
     max-width:260px;
 }
+
 #stats{
     position:absolute;
     top:69px;
@@ -39,13 +40,15 @@ body{
     color:#0050D8;
     font-size:30px;
     font-weight:bold;
-    ttext-shadow:
--1px -1px 0 #000,
- 1px -1px 0 #000,
--1px  1px 0 #000,
- 1px  1px 0 #000;
+    text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
     z-index:10;
     line-height:1.8;
+}
+
 #musicBtn{
     position:absolute;
     top:80px;
@@ -53,12 +56,15 @@ body{
     width:55px;
     z-index:20;
     cursor:pointer;
-}}</style>
+}
+</style>
 </head>
 
 <body>
 
-<div id="game"><img id="musicBtn" src="IMG_0698.png">
+<div id="game">
+
+<img id="musicBtn" src="IMG_0698.png">
 
 <audio id="music" loop>
     <source src="Звук — Бурмалда Фон.mp3" type="audio/mpeg">
@@ -66,11 +72,13 @@ body{
 
 <img id="background" src="IMG_0680.png">
 
-<img id="hero" src="IMG_0686.png"><div id="stats">
+<div id="stats">
     <div>🍽️ Съедено: 0</div>
     <div>💰 Потрачено: 0 ₽</div>
     <div id="timeCounter">⏱️ В игре: 0 мин</div>
 </div>
+
+<img id="hero" src="IMG_0686.png">
 
 </div>
 
@@ -88,6 +96,7 @@ setInterval(() => {
 
     localStorage.setItem("minutes", minutes);
 }, 60000);
+
 const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
 
@@ -101,6 +110,8 @@ musicBtn.onclick = () => {
         music.pause();
         musicBtn.src = "IMG_0698.png";
     }
-};</script>
+};
+</script>
 
+</body>
 </html>
