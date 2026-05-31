@@ -33,6 +33,16 @@ body{
     max-width:260px;
 }
 
+#dance{
+    position:absolute;
+    bottom:10%;
+    left:50%;
+    transform:translateX(-50%);
+    width:35%;
+    max-width:260px;
+    display:none;
+}
+
 #stats{
     position:absolute;
     top:69px;
@@ -80,6 +90,9 @@ body{
 
 <img id="hero" src="IMG_0686.png">
 
+<img id="dance"
+src="copy_A5304EBE-7723-47BA-B008-80F0D6FBBB3A.gif">
+
 </div>
 
 <script>
@@ -99,6 +112,8 @@ setInterval(() => {
 
 const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
+const hero = document.getElementById("hero");
+const dance = document.getElementById("dance");
 
 music.volume = 0.5;
 
@@ -106,9 +121,16 @@ musicBtn.onclick = () => {
     if (music.paused) {
         music.play();
         musicBtn.src = "IMG_0696.png";
+
+        hero.style.display = "none";
+        dance.style.display = "block";
+
     } else {
         music.pause();
         musicBtn.src = "IMG_0698.png";
+
+        hero.style.display = "block";
+        dance.style.display = "none";
     }
 };
 </script>
