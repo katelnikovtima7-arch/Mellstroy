@@ -80,6 +80,10 @@ body{
     <source src="music.mp3.mp3" type="audio/mpeg">
 </audio>
 
+<audio id="clickSound">
+    <source src="Бот myzuka .mp3" type="audio/mpeg">
+</audio>
+
 <img id="background" src="IMG_0680.png">
 
 <div id="stats">
@@ -115,10 +119,15 @@ const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
 const hero = document.getElementById("hero");
 const dance = document.getElementById("dance");
+const clickSound = document.getElementById("clickSound");
 
 music.volume = 0.5;
 
 musicBtn.onclick = () => {
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
     if (music.paused) {
 
         music.play();
