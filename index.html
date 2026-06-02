@@ -43,6 +43,16 @@ body{
     display:none;
 }
 
+#idleAnim{
+    position:absolute;
+    bottom:10%;
+    left:50%;
+    transform:translateX(-50%);
+    width:35%;
+    max-width:260px;
+    display:none;
+}
+
 #stats{
     position:absolute;
     top:69px;
@@ -81,7 +91,7 @@ body{
 </audio>
 
 <audio id="clickSound">
-   <source src="click.mp3" type="audio/mpeg">
+    <source src="click.mp3" type="audio/mpeg">
 </audio>
 
 <img id="background" src="IMG_0680.png">
@@ -96,6 +106,10 @@ body{
 
 <video id="dance" loop muted playsinline>
     <source src="copy_7A631D80-11D5-4A7E-9A6E-F0476D898094.mov">
+</video>
+
+<video id="idleAnim" muted playsinline>
+    <source src="copy_B877BA0D-7424-4E88-A24E-5D772D44001A.mov">
 </video>
 
 </div>
@@ -119,9 +133,40 @@ const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
 const hero = document.getElementById("hero");
 const dance = document.getElementById("dance");
-const clickSound = document.getElementById("clickSound");clickSound.volume = 1.0;
+const idleAnim = document.getElementById("idleAnim");
+const clickSound = document.getElementById("clickSound");
 
+clickSound.volume = 1.0;
 music.volume = 0.5;
+
+let idleTimer;
+
+function startIdleTimer() {
+
+    clearTimeout(idleTimer);
+
+    idleTimer = setTimeout(() => {
+
+        if (!music.paused) return;
+
+        hero.style.display = "none";
+
+        idleAnim.style.display = "block";
+        idleAnim.currentTime = 0;
+        idleAnim.play();
+
+    }, 17000);
+}
+
+idleAnim.addEventListener("ended", () => {
+
+    idleAnim.style.display = "none";
+    hero.style.display = "block";
+
+    startIdleTimer();
+});
+
+startIdleTimer();
 
 musicBtn.onclick = () => {
 
@@ -129,6 +174,11 @@ musicBtn.onclick = () => {
     clickSound.play();
 
     if (music.paused) {
+
+        clearTimeout(idleTimer);
+
+        idleAnim.pause();
+        idleAnim.style.display = "none";
 
         music.play();
         musicBtn.src = "IMG_0696.png";
@@ -148,6 +198,8 @@ musicBtn.onclick = () => {
 
         hero.style.display = "block";
         dance.style.display = "none";
+
+        startIdleTimer();
     }
 };
 </script>
