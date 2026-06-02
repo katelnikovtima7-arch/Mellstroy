@@ -94,6 +94,10 @@ body{
     <source src="click.mp3" type="audio/mpeg">
 </audio>
 
+<audio id="robotSound">
+    <source src="audio.robot .mp3" type="audio/mpeg">
+</audio>
+
 <img id="background" src="IMG_0680.png">
 
 <div id="stats">
@@ -135,8 +139,10 @@ const hero = document.getElementById("hero");
 const dance = document.getElementById("dance");
 const idleAnim = document.getElementById("idleAnim");
 const clickSound = document.getElementById("clickSound");
+const robotSound = document.getElementById("robotSound");
 
 clickSound.volume = 1.0;
+robotSound.volume = 1.0;
 music.volume = 0.5;
 
 let idleTimer;
@@ -152,6 +158,10 @@ function startIdleTimer() {
         hero.style.display = "none";
 
         idleAnim.style.display = "block";
+
+        robotSound.currentTime = 0;
+        robotSound.play();
+
         idleAnim.currentTime = 0;
         idleAnim.play();
 
@@ -159,6 +169,9 @@ function startIdleTimer() {
 }
 
 idleAnim.addEventListener("ended", () => {
+
+    robotSound.pause();
+    robotSound.currentTime = 0;
 
     idleAnim.style.display = "none";
     hero.style.display = "block";
@@ -179,6 +192,9 @@ musicBtn.onclick = () => {
 
         idleAnim.pause();
         idleAnim.style.display = "none";
+
+        robotSound.pause();
+        robotSound.currentTime = 0;
 
         music.play();
         musicBtn.src = "IMG_0696.png";
