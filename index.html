@@ -249,6 +249,24 @@ hero.addEventListener("click", () => {
         hero.style.transform =
         "translateX(-50%) scale(1)";
     }, 80);
+});const carrot = document.getElementById("carrot");
+
+let dragging = false;
+
+carrot.addEventListener("pointerdown", () => {
+    dragging = true;
+});
+
+document.addEventListener("pointermove", (e) => {
+
+    if (!dragging) return;
+
+    carrot.style.left = (e.clientX - 35) + "px";
+    carrot.style.top = (e.clientY - 35) + "px";
+});
+
+document.addEventListener("pointerup", () => {
+    dragging = false;
 });</script>
 
 </body>
