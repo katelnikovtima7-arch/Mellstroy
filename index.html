@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Меллстрой</title>
 
 <style>
@@ -107,7 +107,6 @@ body{
 </div>
 
 <img id="hero" src="IMG_0686.png">
-    <img id="carrot" src="IMG_0759-no-bg-preview-carve.photos.png">
 
 <video id="dance" loop muted playsinline>
     <source src="copy_7A631D80-11D5-4A7E-9A6E-F0476D898094.mov">
@@ -242,27 +241,6 @@ hero.addEventListener("click", () => {
         hero.style.transform =
         "translateX(-50%) scale(1)";
     }, 80);
-const carrot = document.getElementById("carrot");
-
-let dragging = false;
-
-carrot.addEventListener("pointerdown", () => {
-    dragging = true;
-});
-
-document.addEventListener("pointermove", (e) => {
-
-    if (!dragging) return;
-
-    carrot.style.left = (e.clientX - 40) + "px";
-    carrot.style.top = (e.clientY - 40) + "px";
-});
-
-document.addEventListener("pointerup", () => {
-
-    if (!dragging) return;
-
-    dragging = false;
 });</script>
 
 </body>
