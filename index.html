@@ -197,6 +197,10 @@ foodSound.volume = 1.0;
 music.volume = 0.5;
 
 let burmaldy = localStorage.getItem("burmaldy") || 0;
+    let eaten = localStorage.getItem("eaten") || 0;
+
+document.getElementById("eatenCounter").innerText =
+"🍽️ Съедено: " + eaten;
 
 document.getElementById("burmaldaCounter").innerText =
 "🎰 Бурмалды: " + burmaldy;
