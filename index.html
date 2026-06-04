@@ -190,4 +190,156 @@ document.getElementById("burmaldaCounter").innerText =
 
 let idleTimer;
 
-function startIdleTimer() {
+    clearTimeout(idleTimer);
+
+    idleTimer = setTimeout(() => {
+
+        if (!music.paused) return;
+
+        hero.style.display = "none";
+        idleAnim.style.display = "block";
+
+        robotSound.currentTime = 0;
+        robotSound.play();
+
+        idleAnim.currentTime = 0;
+        idleAnim.play();
+
+    }, 17000);
+}
+
+idleAnim.addEventListener("ended", () => {
+
+    robotSound.pause();
+    robotSound.currentTime = 0;
+
+    idleAnim.style.display = "none";
+    hero.style.display = "block";
+
+    startIdleTimer();
+});
+
+startIdleTimer();
+
+musicBtn.onclick = () => {
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    if (music.paused) {
+
+        clearTimeout(idleTimer);
+
+        idleAnim.pause();
+        idleAnim.style.display = "none";
+
+        robotSound.pause();
+        robotSound.currentTime = 0;
+
+        music.play();
+        musicBtn.src = "IMG_0696.png";
+
+        hero.style.display = "none";
+        dance.style.display = "block";
+
+        dance.currentTime = 0;
+        dance.play();
+
+    } else {
+
+        music.pause();
+        dance.pause();
+
+        musicBtn.src = "IMG_0698.png";
+
+        hero.style.display = "block";
+        dance.style.display = "none";
+
+        startIdleTimer();
+    }
+};
+
+hero.addEventListener("click", () => {
+
+    if (hero.style.display === "none") return;
+
+    burmaldaSound.currentTime = 0;
+    burmaldaSound.play();
+
+    burmaldy++;
+
+    document.getElementById("burmaldaCounter").innerText =
+    "🎰 Бурмалды: " + burmaldy;
+
+    localStorage.setItem("burmaldy", burmaldy);
+
+    hero.style.transition = "0.08s";
+    hero.style.transform = "translateX(-50%) scale(0.92)";
+
+    setTimeout(() => {
+        hero.style.transform =
+        "translateX(-50%) scale(1)";
+    }, 80);
+});
+
+const carrot = document.getElementById("carrot");
+const carrotPrice = document.getElementById("carrotPrice");
+
+carrotPrice.style.left = "85px";
+carrotPrice.style.top = "65%";
+
+let eating = false;
+let dragging = false;
+
+carrot.addEventListener("pointerdown", () => {
+    dragging = true;
+});
+
+document.addEventListener("pointermove", (e) => {
+
+    if (!dragging) return;
+
+    carrot.style.left = (e.clientX - 35) + "px";
+    carrot.style.top = (e.clientY - 35) + "px";
+
+    carrotPrice.style.left = (e.clientX - 5) + "px";
+    carrotPrice.style.top = (e.clientY + 30) + "px";
+
+    const heroRect = hero.getBoundingClientRect();
+    const carrotRect = carrot.getBoundingClientRect();
+
+    if (
+        !eating &&
+        carrotRect.left < heroRect.left + heroRect.width * 0.58 &&
+        carrotRect.right > heroRect.left + heroRect.width * 0.42 &&
+        carrotRect.top < heroRect.top + heroRect.height * 0.35 &&
+        carrotRect.bottom > heroRect.top + heroRect.height * 0.20
+    ) {
+
+        eating = true;
+
+        foodSound.currentTime = 0;
+        foodSound.play();
+
+        carrot.style.transition = "1s";
+        carrot.style.opacity = "0";
+        carrot.style.transform = "scale(0)";
+
+        carrotPrice.style.transition = "1s";
+        carrotPrice.style.opacity = "0";
+
+        setTimeout(() => {
+            carrot.style.display = "none";
+            carrotPrice.style.display = "none";
+        }, 1000);
+    }
+});
+
+document.addEventListener("pointerup", () => {
+    dragging = false;
+});
+
+</script>
+
+</body>
+</html>
