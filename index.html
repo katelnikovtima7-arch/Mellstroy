@@ -302,10 +302,12 @@ foodSound.play();
     carrot.style.transition = "1s";
     carrot.style.opacity = "0";
     carrot.style.transform = "scale(0)";
+    carrotPrice.style.opacity = "0";
 
     setTimeout(() => {
-        carrot.style.display = "none";
-    }, 1000);
+    carrot.style.display = "none";
+    carrotPrice.style.display = "none";
+}, 1000);
 }
 });
 
