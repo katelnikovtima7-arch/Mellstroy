@@ -344,9 +344,29 @@ document.addEventListener("pointermove", (e) => {
         carrotPrice.style.opacity = "0";
 
         setTimeout(() => {
-            carrot.style.display = "none";
-            carrotPrice.style.display = "none";
-        }, 1000);
+    carrot.style.display = "none";
+    carrotPrice.style.display = "none";
+}, 1000);
+
+setTimeout(() => {
+
+    carrot.style.display = "block";
+    carrotPrice.style.display = "block";
+
+    carrot.style.opacity = "1";
+    carrotPrice.style.opacity = "1";
+
+    carrot.style.transform = "scale(1)";
+
+    carrot.style.left = "12%";
+    carrot.style.top = "58%";
+
+    carrotPrice.style.left = "85px";
+    carrotPrice.style.top = "65%";
+
+    eating = false;
+
+}, 7000);
     }
 });
 
