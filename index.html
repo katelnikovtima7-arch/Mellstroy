@@ -284,8 +284,10 @@ document.addEventListener("pointermove", (e) => {
     carrotRect.top < heroRect.top + heroRect.height * 0.65 &&
 carrotRect.bottom > heroRect.top + heroRect.height * 0.35
     carrotPrice.style.left = (e.clientX + 5) + "px";
-    carrotPrice.style.opacity = "0";
+    
 carrotPrice.style.top = (e.clientY + 5) + "px";
+    carrotPrice.style.left = (e.clientX + 5) + "px";
+carrotPrice.style.top = (e.clientY + 35) + "px";
     const heroRect = hero.getBoundingClientRect();
 const carrotRect = carrot.getBoundingClientRect();
 
