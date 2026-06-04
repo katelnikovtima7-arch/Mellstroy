@@ -251,7 +251,8 @@ hero.addEventListener("click", () => {
     }, 80);
 });
     const carrot = document.getElementById("carrot");
-let eating = false;
+
+    let eating = false;
 let dragging = false;
 
 carrot.addEventListener("pointerdown", () => {
@@ -264,6 +265,27 @@ document.addEventListener("pointermove", (e) => {
 
     carrot.style.left = (e.clientX - 35) + "px";
     carrot.style.top = (e.clientY - 35) + "px";
+    const heroRect = hero.getBoundingClientRect();
+const carrotRect = carrot.getBoundingClientRect();
+
+if (
+    !eating &&
+    carrotRect.left < heroRect.right &&
+    carrotRect.right > heroRect.left &&
+    carrotRect.top < heroRect.bottom &&
+    carrotRect.bottom > heroRect.top
+) {
+
+    eating = true;
+
+    carrot.style.transition = "1s";
+    carrot.style.opacity = "0";
+    carrot.style.transform = "scale(0)";
+
+    setTimeout(() => {
+        carrot.style.display = "none";
+    }, 1000);
+}
 });
 
 document.addEventListener("pointerup", () => {
