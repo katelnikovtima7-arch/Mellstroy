@@ -336,7 +336,12 @@ document.addEventListener("pointermove", (e) => {
     ) {
 
         eating = true;
+eaten++;
 
+document.getElementById("eatenCounter").innerText =
+"🍽️ Съедено: " + eaten;
+
+localStorage.setItem("eaten", eaten);
         foodSound.currentTime = 0;
         foodSound.play();
 
