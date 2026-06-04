@@ -192,7 +192,8 @@ let idleTimer;
     function startIdleTimer() {
 
     clearTimeout(idleTimer);
-
+    }, 17000);
+}
     idleTimer = setTimeout(() => {
 
         if (!music.paused) return;
