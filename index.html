@@ -281,10 +281,8 @@ document.addEventListener("pointermove", (e) => {
 
     if (!dragging) return;
 
-    carrot.style.left = (e.clientX - 35) + "px";
-carrot.style.top = (e.clientY - 35) + "px";
-    carrotPrice.style.left = (e.clientX - 10) + "px";
-carrotPrice.style.top = (e.clientY - 45) + "px";
+    carrotRect.top < heroRect.top + heroRect.height * 0.65 &&
+carrotRect.bottom > heroRect.top + heroRect.height * 0.35
     carrotPrice.style.left = (e.clientX + 5) + "px";
     carrotPrice.style.opacity = "0";
 carrotPrice.style.top = (e.clientY + 5) + "px";
