@@ -189,11 +189,11 @@ document.getElementById("burmaldaCounter").innerText =
 "🎰 Бурмалды: " + burmaldy;
 
 let idleTimer;
-    function startIdleTimer() {
+
+function startIdleTimer() {
 
     clearTimeout(idleTimer);
-    }, 17000);
-}
+
     idleTimer = setTimeout(() => {
 
         if (!music.paused) return;
