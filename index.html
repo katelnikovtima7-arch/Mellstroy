@@ -273,10 +273,10 @@ const carrotRect = carrot.getBoundingClientRect();
 
 if (
     !eating &&
-    carrotRect.left < heroRect.left + heroRect.width * 0.65 &&
-    carrotRect.right > heroRect.left + heroRect.width * 0.35 &&
-    carrotRect.top < heroRect.top + heroRect.height * 0.35 &&
-    carrotRect.bottom > heroRect.top
+    carrotRect.left < heroRect.left + heroRect.width * 0.60 &&
+carrotRect.right > heroRect.left + heroRect.width * 0.40 &&
+carrotRect.top < heroRect.top + heroRect.height * 0.20 &&
+carrotRect.bottom > heroRect.top + heroRect.height * 0.10
 ){
 
     eating = true;
