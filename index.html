@@ -401,7 +401,15 @@ document.addEventListener("pointerup", () => {
     dragging = false;
 });
 
-</script>
+eatAnim.addEventListener("ended", () => {
+
+    eatAnim.style.display = "none";
+
+    if (music.paused) {
+        hero.style.display = "block";
+    }
+
+});</script>
 
 </body>
 </html>
