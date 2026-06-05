@@ -247,6 +247,7 @@ function startIdleTimer() {
 
     }, 17000);
     {
+    
         idleAnim.addEventListener("ended", () => {
 
     robotSound.pause();
@@ -254,6 +255,13 @@ function startIdleTimer() {
 
     idleAnim.style.display = "none";
     hero.style.display = "block";
+    idleAnim.style.display = "block";
+
+robotSound.currentTime = 0;
+robotSound.play();
+
+idleAnim.currentTime = 0;
+idleAnim.play();
 
     startIdleTimer();
 
