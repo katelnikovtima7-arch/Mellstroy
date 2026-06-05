@@ -233,13 +233,17 @@ function startIdleTimer() {
         if (!music.paused) return;
 
         hero.style.display = "none";
-        idleAnim.style.display = "block";
+        idleAnim.addEventListener("ended", () => {
 
-        robotSound.currentTime = 0;
-        robotSound.play();
+    robotSound.pause();
+    robotSound.currentTime = 0;
 
-        idleAnim.currentTime = 0;
-        idleAnim.play();
+    idleAnim.style.display = "none";
+    hero.style.display = "block";
+
+    startIdleTimer();
+
+});
 
     }, 17000);
 }
