@@ -246,57 +246,19 @@ function startIdleTimer() {
 });
 
     }, 17000);
-}
-
-idleAnim.addEventListener("ended", () => {
+    {
+        idleAnim.addEventListener("ended", () => {
 
     robotSound.pause();
     robotSound.currentTime = 0;
 
     idleAnim.style.display = "none";
-    hero.style.display = "none";
+    hero.style.display = "block";
 
-eatVoice.currentTime = 0;
-eatVoice.play();
+    startIdleTimer();
 
-eatAnim.style.display = "block";
-eatAnim.currentTime = 0;
-eatAnim.play();
-
-    if (music.paused) {
-
-        clearTimeout(idleTimer);
-
-        idleAnim.pause();
-        idleAnim.style.display = "none";
-
-        robotSound.pause();
-        robotSound.currentTime = 0;
-
-        music.play();
-        musicBtn.src = "IMG_0696.png";
-
-        hero.style.display = "none";
-        dance.style.display = "block";
-
-        dance.currentTime = 0;
-        dance.play();
-
-    } else {
-
-        music.pause();
-        dance.pause();
-
-        musicBtn.src = "IMG_0698.png";
-
-        hero.style.display = "block";
-        dance.style.display = "none";
-
-        startIdleTimer();
-    }
-};
-
-hero.addEventListener("click", () => {
+});
+    
 
     if (hero.style.display === "none") return;
 
