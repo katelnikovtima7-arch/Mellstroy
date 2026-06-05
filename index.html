@@ -363,6 +363,8 @@ document.getElementById("eatenCounter").innerText =
 localStorage.setItem("eaten", eaten);
         foodSound.currentTime = 0;
         foodSound.play();
+        eatVoice.currentTime = 0;
+eatVoice.play();
         hero.style.display = "none";
 
 eatAnim.style.display = "block";
