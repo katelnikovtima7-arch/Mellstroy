@@ -250,17 +250,14 @@ idleAnim.addEventListener("ended", () => {
     robotSound.currentTime = 0;
 
     idleAnim.style.display = "none";
-    hero.style.display = "block";
+    hero.style.display = "none";
 
-    startIdleTimer();
-});
+eatVoice.currentTime = 0;
+eatVoice.play();
 
-startIdleTimer();
-
-musicBtn.onclick = () => {
-
-    clickSound.currentTime = 0;
-    clickSound.play();
+eatAnim.style.display = "block";
+eatAnim.currentTime = 0;
+eatAnim.play();
 
     if (music.paused) {
 
