@@ -81,20 +81,11 @@ body{
     bottom:24%;
     left:50%;
     transform:translateX(-50%);
-    width:28%;
-    max-width:190px;
+    width:26%;
+    max-width:180px;
     display:none;
 }
-    
-#eatAnim{
-    position:absolute;
-    bottom:24%;
-    left:50%;
-    transform:translateX(-50%);
-    width:30%;
-    max-width:190px;
-    display:none;
-}
+
 #stats{
     position:absolute;
     top:69px;
@@ -145,9 +136,6 @@ body{
 <audio id="foodSound">
     <source src="food.mp3" type="audio/mpeg">
 </audio>
-    <audio id="eatVoice">
-    <source src="Audio.fyd">
-</audio>
 
 <img id="background" src="IMG_0680.png">
 
@@ -156,10 +144,9 @@ body{
     <div>💰 Потрачено: 0 ₽</div>
     <div id="timeCounter">⏱️ В игре: 0 мин</div>
     <div id="burmaldaCounter">🎰 Бурмалды: 0</div>
-    </div>
-    
-    <img id="hero" src="IMG_0686.png">
- 
+</div>
+
+<img id="hero" src="IMG_0686.png">
     <img id="painting" src="IMG_0797.jpeg">
 
 <img id="carrot" src="IMG_0759-no-bg-preview-carve.photos.png">
@@ -167,9 +154,6 @@ body{
 
 <video id="dance" loop muted playsinline>
     <source src="copy_7A631D80-11D5-4A7E-9A6E-F0476D898094.mov">
-</video>
-    <video id="eatAnim" muted playsinline>
-    <source src="Video.mell.mov">
 </video>
 
 <video id="idleAnim" muted playsinline>
@@ -204,13 +188,11 @@ const clickSound = document.getElementById("clickSound");
 const robotSound = document.getElementById("robotSound");
 const burmaldaSound = document.getElementById("burmaldaSound");
 const foodSound = document.getElementById("foodSound");
-const eatVoice = document.getElementById("eatVoice");
 
 clickSound.volume = 1.0;
 robotSound.volume = 1.0;
 burmaldaSound.volume = 1.0;
 foodSound.volume = 1.0;
-eatVoice.volume = 1.0;
 
 music.volume = 0.5;
 
@@ -223,10 +205,105 @@ document.getElementById("eatenCounter").innerText =
 document.getElementById("burmaldaCounter").innerText =
 "🎰 Бурмалды: " + burmaldy;
 
+let idleTimer;
+
+function startIdleTimer() {
+
+    clearTimeout(idleTimer);
+
+    idleTimer = setTimeout(() => {
+
+        if (!music.paused) return;
+
+        hero.style.display = "none";
+        idleAnim.style.display = "block";
+
+        robotSound.currentTime = 0;
+        robotSound.play();
+
+        idleAnim.currentTime = 0;
+        idleAnim.play();
+
+    }, 17000);
+}
+
+idleAnim.addEventListener("ended", () => {
+
+    robotSound.pause();
+    robotSound.currentTime = 0;
+
+    idleAnim.style.display = "none";
+    hero.style.display = "block";
+
+    startIdleTimer();
+});
+
+startIdleTimer();
+
+musicBtn.onclick = () => {
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    if (music.paused) {
+
+        clearTimeout(idleTimer);
+
+        idleAnim.pause();
+        idleAnim.style.display = "none";
+
+        robotSound.pause();
+        robotSound.currentTime = 0;
+
+        music.play();
+        musicBtn.src = "IMG_0696.png";
+
+        hero.style.display = "none";
+        dance.style.display = "block";
+
+        dance.currentTime = 0;
+        dance.play();
+
+    } else {
+
+        music.pause();
+        dance.pause();
+
+        musicBtn.src = "IMG_0698.png";
+
+        hero.style.display = "block";
+        dance.style.display = "none";
+
+        startIdleTimer();
+    }
+};
+
+hero.addEventListener("click", () => {
+
+    if (hero.style.display === "none") return;
+
+    burmaldaSound.currentTime = 0;
+    burmaldaSound.play();
+
+    burmaldy++;
+
+    document.getElementById("burmaldaCounter").innerText =
+    "🎰 Бурмалды: " + burmaldy;
+
+    localStorage.setItem("burmaldy", burmaldy);
+
+    hero.style.transition = "0.08s";
+    hero.style.transform = "translateX(-50%) scale(0.92)";
+
+    setTimeout(() => {
+        hero.style.transform =
+        "translateX(-50%) scale(1)";
+    }, 80);
+});
+
 const carrot = document.getElementById("carrot");
 const carrotPrice = document.getElementById("carrotPrice");
-    
-const eatAnim = document.getElementById("eatAnim");
+
 carrotPrice.style.left = "85px";
 carrotPrice.style.top = "65%";
 
@@ -267,13 +344,6 @@ document.getElementById("eatenCounter").innerText =
 localStorage.setItem("eaten", eaten);
         foodSound.currentTime = 0;
         foodSound.play();
-        eatVoice.currentTime = 0;
-eatVoice.play();
-        hero.style.display = "none";
-
-eatAnim.style.display = "block";
-eatAnim.currentTime = 0;
-eatAnim.play();
 
         carrot.style.transition = "1s";
         carrot.style.opacity = "0";
@@ -312,13 +382,7 @@ setTimeout(() => {
 document.addEventListener("pointerup", () => {
     dragging = false;
 });
-eatAnim.addEventListener("ended", () => {
 
-    eatAnim.style.display = "none";
-
-    hero.style.display = "block";
-
-});
 </script>
 
 </body>
