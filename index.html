@@ -409,6 +409,13 @@ setTimeout(() => {
 document.addEventListener("pointerup", () => {
     dragging = false;
 });
+    eatAnim.addEventListener("ended", () => {
+
+    eatAnim.style.display = "none";
+
+    hero.style.display = "block";
+
+});
 
 </script>
 
