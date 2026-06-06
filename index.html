@@ -361,7 +361,16 @@ document.getElementById("eatenCounter").innerText =
 
 localStorage.setItem("eaten", eaten);
         foodSound.currentTime = 0;
-        foodSound.play();
+foodSound.play();
+
+eatVoice.currentTime = 0;
+eatVoice.play();
+
+hero.style.display = "none";
+
+eatAnim.style.display = "block";
+eatAnim.currentTime = 0;
+eatAnim.play();
 
         carrot.style.transition = "1s";
         carrot.style.opacity = "0";
